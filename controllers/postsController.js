@@ -1,30 +1,30 @@
-const posts = require('../data/posts');
+const lista = require('../data/lista');
 
 function index(req, res) {
 
-    let filteredposts = posts;
+    let filteredlista = lista;
 
     console.log(req);
 
     if (req.query.tags) {
         console.log('filter the result');
-        filteredpost = posts.filter(posts => posts.tags.includes(req.query.tags));
+        filteredlista = lista.filter(post => post.tags.includes(req.query.tags));
     }
     //  res.send('return all posts here');
-    res.json(filteredpost);
+    res.json(filteredlista);
 }
 
 
 function show(req, res) {
 
   //console.log(req);
-  const postsId = Number(req.params.id);
+  const postId = Number(req.params.id);
 
 
-  const posts = posts.find(posts => posts.id === postsId);
-  console.log(posts);
+  const post = lista.find(post => post.id === postId);
+  console.log(post);
 
-  if (!posts) {
+  if (!post) {
 
       return res.status(404).json({
           error: '404 not found',
@@ -32,7 +32,7 @@ function show(req, res) {
       });
   }
 
-  res.json(posts);
+  res.json(post);
   // res.send(`return post with id ${postsId}`);
 }
 
@@ -50,23 +50,23 @@ function modify (req, res) {
 
        
 const destroy = (req, res) => {
-    const postsId = Number(req.params.id);
+    const postId = Number(req.params.id);
 
 
-    const posts = posts.find(post => posts.id === postsId);
-    console.log(pizza);
+    const post = lista.find(post => post.id === postId);
+    console.log(post);
 
-    if (!posts) {
+    if (!post) {
 
         return res.status(404).json({
             error: '404 not found',
-            message: 'posts not found'
+            message: 'post not found'
         });
     }
 
 
-    posts.splice(posts.indexOf(posts), 1);
-    console.log(posts);
+    lista.splice(lista.indexOf(post), 1);
+    console.log(lista);
 
     res.sendStatus(204)
     
