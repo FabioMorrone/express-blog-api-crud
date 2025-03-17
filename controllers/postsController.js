@@ -17,38 +17,59 @@ function index(req, res) {
 
 function show(req, res) {
 
-  //console.log(req);
-  const postId = Number(req.params.id);
+    //console.log(req);
+    const postId = Number(req.params.id);
 
 
-  const post = lista.find(post => post.id === postId);
-  console.log(post);
+    const post = lista.find(post => post.id === postId);
+    console.log(post);
 
-  if (!post) {
+    if (!post) {
 
-      return res.status(404).json({
-          error: '404 not found',
-          message: 'posts not found'
-      });
-  }
+        return res.status(404).json({
+            error: '404 not found',
+            message: 'posts not found'
+        });
+    }
 
-  res.json(post);
-  // res.send(`return post with id ${postsId}`);
+    res.json(post);
+    // res.send(`return post with id ${postsId}`);
 }
 
-function store (req, res) {
-    res.send('store a new posts');
+function store(req, res) {
+
+    const newId = lista[lista.length - 1].id + 1;
+
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags,
+    }
+
+    lista.push(newPost)
+
+    console.log(lista);
+
+    res.status(201);
+    res.json(newPost);
+
+
+
+    // res.send('store a new posts');
 }
 
-function update (req, res) {
+function update(req, res) {
     res.send(`update the posts with an id of ${req.params.id}`);
 }
 
-function modify (req, res) {
+function modify(req, res) {
     res.send(`modify the posts with an id of ${req.params.id}`);
 }
 
-       
+
 const destroy = (req, res) => {
     const postId = Number(req.params.id);
 
@@ -69,7 +90,7 @@ const destroy = (req, res) => {
     console.log(lista);
 
     res.sendStatus(204)
-    
+
 }
 
 module.exports = {
