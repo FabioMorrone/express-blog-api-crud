@@ -62,7 +62,32 @@ function store(req, res) {
 }
 
 function update(req, res) {
-    res.send(`update the posts with an id of ${req.params.id}`);
+    const postId = Number(req.params.id);
+
+
+    const post = lista.find(post => post.id === postId);
+    console.log(post);
+
+    if (!post) {
+
+        return res.status(404).json({
+            error: '404 not found',
+            message: 'post not found'
+        });
+    }
+
+    console.log(req.body);
+
+    post.title = req.body.title,
+    post.slug = req.body.slug,
+    post.content = req.body.content;
+    post.image = req.body.image,
+    post.tags = req.body.tags,
+
+    console.log(lista);
+    
+    res.json(post);
+   // res.send(`update the posts with an id of ${req.params.id}`);
 }
 
 function modify(req, res) {
