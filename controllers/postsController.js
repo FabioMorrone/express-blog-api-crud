@@ -18,10 +18,10 @@ function index(req, res) {
 function show(req, res) {
 
     //console.log(req);
-    const postId = Number(req.params.id);
+    const postSlug = Number(req.params.slug);
 
 
-    const post = lista.find(post => post.id === postId);
+    const post = lista.find(post => post.slug === postSlug);
     console.log(post);
 
     if (!post) {
@@ -38,12 +38,12 @@ function show(req, res) {
 
 function store(req, res) {
 
-    const newId = lista[lista.length - 1].id + 1;
+    const newSlug = lista[lista.length - 1].slug + 1;
 
     const newPost = {
-        id: newId,
+        
         title: req.body.title,
-        slug: req.body.slug,
+        slug: newSlug,
         content: req.body.content,
         image: req.body.image,
         tags: req.body.tags,
@@ -62,10 +62,10 @@ function store(req, res) {
 }
 
 function update(req, res) {
-    const postId = Number(req.params.id);
+    const postSlug = Number(req.params.Slug);
 
 
-    const post = lista.find(post => post.id === postId);
+    const post = lista.find(post => post.slug === postSlug);
     console.log(post);
 
     if (!post) {
@@ -96,10 +96,10 @@ function modify(req, res) {
 
 
 const destroy = (req, res) => {
-    const postId = Number(req.params.id);
+    const postSlug = Number(req.params.slug);
 
 
-    const post = lista.find(post => post.id === postId);
+    const post = lista.find(post => post.slug === postSlug);
     console.log(post);
 
     if (!post) {
