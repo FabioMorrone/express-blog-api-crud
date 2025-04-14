@@ -1,4 +1,4 @@
-const express  = require('express');	
+const express = require('express');
 const router = express.Router();
 
 
@@ -10,7 +10,7 @@ router.get('/', postsController.index);
 
 
 //show
-router.get('/:id', postsController.show);
+router.get('/:slug', postsController.show);
 
 
 // store
@@ -18,7 +18,7 @@ router.post('/', postsController.store);
 
 
 // update
-router.put('/:id', postsController.update);    
+router.put('/:id', postsController.update);
 
 
 //partial update

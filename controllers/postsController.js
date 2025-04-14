@@ -15,33 +15,31 @@ function index(req, res) {
 }
 
 
+
+
 function show(req, res) {
-
-    //console.log(req);
-    const postSlug = Number(req.params.slug);
-
+    const postSlug = req.params.slug;
 
     const post = lista.find(post => post.slug === postSlug);
-    console.log(post);
 
     if (!post) {
-
         return res.status(404).json({
             error: '404 not found',
-            message: 'posts not found'
+            message: 'post not found'
         });
     }
 
     res.json(post);
-    // res.send(`return post with id ${postsId}`);
 }
+
+
 
 function store(req, res) {
 
     const newSlug = lista[lista.length - 1].slug + 1;
 
     const newPost = {
-        
+
         title: req.body.title,
         slug: newSlug,
         content: req.body.content,
@@ -79,15 +77,15 @@ function update(req, res) {
     console.log(req.body);
 
     post.title = req.body.title,
-    post.slug = req.body.slug,
-    post.content = req.body.content;
+        post.slug = req.body.slug,
+        post.content = req.body.content;
     post.image = req.body.image,
-    post.tags = req.body.tags,
+        post.tags = req.body.tags,
 
-    console.log(lista);
-    
+        console.log(lista);
+
     res.json(post);
-   // res.send(`update the posts with an id of ${req.params.id}`);
+    // res.send(`update the posts with an id of ${req.params.id}`);
 }
 
 function modify(req, res) {
